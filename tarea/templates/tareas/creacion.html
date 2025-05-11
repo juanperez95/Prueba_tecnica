@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Crear tarea</title>
+</head>
+<body>
+    <section class="flex flex-col p-5 justify-center gap-4">
+        <article class="p-5 text-blue-500 border-2 border-black">
+            <h4 class="text-2xl text-4xl text-center">Creacion de tarea</h4>
+        </article>
+        <!-- Espacio para formulario de creacion de tarea -->
+        <article class="border-2 border-black p-5">
+            <form action="{% url 'saveWork' %}" method="POST" class="grid grid-cols-4 gap-4">
+                {% csrf_token %}
+                <article>
+                    <label for="titulo">Titulo:</label><br>
+                    <input type="text" name="titulo" id="titulo" placeholder="Titulo de la tarea" class="p-4">
+                </article>
+                <article>
+                    <label for="descripcion">Descripcion:</label><br>
+                    <textarea name="descripcion" id="descripcion" placeholder="Descripcion de la tarea" class="p-4"></textarea>
+                </article>
+                <article>
+                    <label for="fecha_limite">Fecha limite:</label><br>
+                    <input type="date" name="fecha_limite" id="fecha_limite" placeholder="Fecha limite" class="p-4">
+                </article>
+                <article>
+                    <label for="prioridad">Prioridad:</label><br>
+                    <select name="prioridad" id="prioridad" class="p-4">
+                        <option value="#">Seleccione una prioridad</option>
+                        <option value="Baja">Baja</option>
+                        <option value="Media">Media</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </article>
+                <button class="p-5 text-white bg-red-500 rounded-md transition duration-150 hover:bg-red-600 w-full mt-5">
+                    <a href="{% url 'inicio' %}">Cancelar</a>
+                </button>
+                <button type="submit" class="p-5 text-white bg-green-500 rounded-md transition duration-150 hover:bg-green-600 w-full mt-5">
+                    Guardar
+                </button>
+    </section>
+</body>
+</html>

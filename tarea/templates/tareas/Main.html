@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Tareas</title>
+</head>
+<body>
+    <section class="flex p-5 justify-center gap-4">
+        <article class="p-5 text-blue-500 border-2 border-black">
+            <h4 class="text-2xl text-4xl text-center">Listado de tareas</h4>
+            <button class="p-5 text-white bg-green-500 rounded-md transition duration-150 hover:bg-green-600 w-full mt-5">
+                <a href="{% url 'creacionTarea' %}">Crear tarea</a>
+            </button>
+        </article>
+        <!-- Localizacion de la tabla de tareas -->
+        <article class="border-2 border-black p-5">
+            <table>
+                <thead>
+                    <th class="text-center p-5 bg-blue-500 text-white">Titulo</th> 
+                    <th class="text-center p-5 bg-blue-500 text-white">Descripcion</th>
+                    <th class="text-center p-5 bg-blue-500 text-white">Creación tarea</th>
+                    <th class="text-center p-5 bg-blue-500 text-white">Limite tarea</th>
+                    <th class="text-center p-5 bg-blue-500 text-white">Prioridad</th>
+                    <th class="text-center p-5 bg-blue-500 text-white">Acciones</th>
+                </thead>
+                <tbody>
+                    <!-- Iterar todas las tareas -->
+                    {% for tarea in tareas %}
+                    <tr>
+                        <td class="text-center p-4">{{tarea.titulo}}</td>
+                        <td class="text-center p-4">{{tarea.descripcion}}</td>
+                        <td class="text-center p-4">{{tarea.fecha_creacion}}</td>
+                        <td class="text-center p-4">{{tarea.fecha_limite}}</td>
+                        <td class="text-center p-4">{{tarea.prioridad}}</td>
+                        <td class="text-center p-4">
+                            <button class="p-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
+                                <a href="{% url 'editar' tarea.id %}">Editar</a>
+                            </button>
+                            <button class="p-2 text-white bg-red-400 rounded-md hover:bg-red-500">
+                                <a href="{% url 'eliminar' tarea.id %}">Eliminar</a>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </article>
+    </section>
+</body>
+</html>
