@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Base de datos POSTGRESQL
+  postgres_db:
+    image: postgres
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=tareas
+    ports:
+    # Puerto en uso
+      - 5433:5432
+
+  # Django
+  tareas:
+    build: .
+    container_name: tareas
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres_db
+
+volumes:
+  postgres_data:

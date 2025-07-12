@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'tareas',
         'PORT': '5432',
         'USER': 'postgres',
-        'HOST': 'localhost',
+        'HOST': 'postgres_db',
         'PASSWORD': '1234',
     }
 }
